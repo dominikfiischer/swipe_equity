@@ -1,0 +1,42 @@
+[
+  {
+    "symbol": "AAPL",
+    "price": 185.50,
+    "open": 184.00,
+    "high": 186.20,
+    "low": 183.50,
+    "volume": 75201234
+  },
+  {
+    "symbol": "MSFT",
+    "price": 401.15,
+    "open": 400.00,
+    "high": 402.50,
+    "low": 399.80,
+    "volume": 54123456
+  },
+  {
+    "symbol": "AMZN",
+    "price": 154.75,
+    "open": 153.00,
+    "high": 155.00,
+    "low": 152.50,
+    "volume": 38765432
+  },
+  {
+    "symbol": "NVDA",
+    "price": 780.90,
+    "open": 775.00,
+    "high": 785.00,
+    "low": 774.50,
+    "volume": 120556789
+  },
+  {
+    "symbol": "GOOGL",
+    "price": 140.00,
+    "open": 139.00,
+    "high": 140.50,
+    "low": 138.80,
+    "volume": 25000000
+  }
+]
