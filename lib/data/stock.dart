@@ -1,31 +1,48 @@
+// lib/data/stock.dart
 class Stock {
   final String symbol;
-  // 'price' typically represents the closing price in EOD data
+  final String name;
   final double price;
-  final double? open;
-  final double? high;
-  final double? low;
-  final int? volume;
+  // 🛠️ FIX: Add '?' to make these fields nullable
+  final String? marketCap;
+  final String? dividendYield;
+  final String? peRatio;
+  final String? averageVolume;
+  final String? founded;
+  final String? employees;
+  final String? ceo;
+  final String? website;
+  final String? about;
 
   Stock({
     required this.symbol,
+    required this.name,
     required this.price,
-    this.open,
-    this.high,
-    this.low,
-    this.volume
+    this.marketCap,
+    this.dividendYield,
+    this.peRatio,
+    this.averageVolume,
+    this.founded,
+    this.employees,
+    this.ceo,
+    this.website,
+    this.about,
   });
 
   factory Stock.fromJson(Map<String, dynamic> json) {
     return Stock(
-      symbol: json['symbol'],
-      // Use null-aware operator (?.) and default to 0.0 if the field is missing
-      price: json['price']?.toDouble() ?? 0.0,
-      open: json['open']?.toDouble(),
-      high: json['high']?.toDouble(),
-      low: json['low']?.toDouble(),
-      // Volume is explicitly cast to an integer
-      volume: json['volume'] as int?,
+      symbol: json['symbol']?.toString() ?? '',
+      name: json['name']?.toString() ?? 'Unknown',
+      price: (json['price'] ?? 0).toDouble(),
+      marketCap: json['marketCap']?.toString(),
+      dividendYield: json['dividendYield']?.toString(),
+      peRatio: json['peRatio']?.toString(),
+      averageVolume: json['averageVolume']?.toString(),
+      founded: json['founded']?.toString(),
+      employees: json['employees']?.toString(),
+      ceo: json['ceo']?.toString(),
+      website: json['website']?.toString(),
+      about: json['about']?.toString(),
     );
   }
 }

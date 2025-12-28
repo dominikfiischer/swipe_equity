@@ -1,42 +1,58 @@
 [
   {
     "symbol": "AAPL",
-    "price": 185.50,
-    "open": 184.00,
-    "high": 186.20,
-    "low": 183.50,
-    "volume": 75201234
+    "name": "Apple Inc.",
+    "price": 230.50,
+    "marketCap": "$2.9T USD",
+    "dividendYield": "0.50%",
+    "peRatio": "28.5",
+    "averageVolume": "35.4M",
+    "founded": "1976",
+    "employees": "164,000",
+    "ceo": "Tim Cook",
+    "website": "apple.com",
+    "about": "Tech-Konzern aus den USA mit starkem Wachstum im Services-Bereich."
   },
   {
-    "symbol": "MSFT",
-    "price": 401.15,
-    "open": 400.00,
-    "high": 402.50,
-    "low": 399.80,
-    "volume": 54123456
-  },
-  {
-    "symbol": "AMZN",
-    "price": 154.75,
-    "open": 153.00,
-    "high": 155.00,
-    "low": 152.50,
-    "volume": 38765432
+    "symbol": "TSLA",
+    "name": "Tesla, Inc.",
+    "price": 250.20,
+    "marketCap": "$780B USD",
+    "dividendYield": "N/A",
+    "peRatio": "72.1",
+    "averageVolume": "100.2M",
+    "founded": "2003",
+    "employees": "140,000",
+    "ceo": "Elon Musk",
+    "website": "tesla.com",
+    "about": "American electric vehicle and clean energy company led by Elon Musk."
   },
   {
     "symbol": "NVDA",
-    "price": 780.90,
-    "open": 775.00,
-    "high": 785.00,
-    "low": 774.50,
-    "volume": 120556789
+    "name": "NVIDIA Corp",
+    "price": 135.10,
+    "marketCap": "$3.1T USD",
+    "dividendYield": "0.02%",
+    "peRatio": "75.4",
+    "averageVolume": "280.5M",
+    "founded": "1993",
+    "employees": "29,600",
+    "ceo": "Jensen Huang",
+    "website": "nvidia.com",
+    "about": "Global leader in AI computing and graphics processing units (GPUs)."
   },
   {
-    "symbol": "GOOGL",
-    "price": 140.00,
-    "open": 139.00,
-    "high": 140.50,
-    "low": 138.80,
-    "volume": 25000000
+    "symbol": "MSFT",
+    "name": "Microsoft",
+    "price": 420.30,
+    "marketCap": "$3.2T USD",
+    "dividendYield": "0.72%",
+    "peRatio": "35.2",
+    "averageVolume": "22.1M",
+    "founded": "1975",
+    "employees": "221,000",
+    "ceo": "Satya Nadella",
+    "website": "microsoft.com",
+    "about": "Leading technology company known for software, services, and cloud computing."
   }
 ]
