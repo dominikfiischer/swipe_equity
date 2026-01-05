@@ -1,9 +1,6 @@
-// lib/data/stock.dart
 class Stock {
-  final String symbol;
   final String name;
-  final double price;
-  // 🛠️ FIX: Add '?' to make these fields nullable
+  final String ticker; // This was missing or named differently
   final String? marketCap;
   final String? dividendYield;
   final String? peRatio;
@@ -15,9 +12,8 @@ class Stock {
   final String? about;
 
   Stock({
-    required this.symbol,
     required this.name,
-    required this.price,
+    required this.ticker,
     this.marketCap,
     this.dividendYield,
     this.peRatio,
@@ -29,20 +25,20 @@ class Stock {
     this.about,
   });
 
+  // This converts your JSON maps into Stock objects
   factory Stock.fromJson(Map<String, dynamic> json) {
     return Stock(
-      symbol: json['symbol']?.toString() ?? '',
-      name: json['name']?.toString() ?? 'Unknown',
-      price: (json['price'] ?? 0).toDouble(),
-      marketCap: json['marketCap']?.toString(),
-      dividendYield: json['dividendYield']?.toString(),
-      peRatio: json['peRatio']?.toString(),
-      averageVolume: json['averageVolume']?.toString(),
-      founded: json['founded']?.toString(),
-      employees: json['employees']?.toString(),
-      ceo: json['ceo']?.toString(),
-      website: json['website']?.toString(),
-      about: json['about']?.toString(),
+      name: json['name'] ?? '',
+      ticker: json['ticker'] ?? '', // Make sure your JSON uses the key "ticker"
+      marketCap: json['marketCap'],
+      dividendYield: json['dividendYield'],
+      peRatio: json['peRatio'],
+      averageVolume: json['averageVolume'],
+      founded: json['founded'],
+      employees: json['employees'],
+      ceo: json['ceo'],
+      website: json['website'],
+      about: json['about'],
     );
   }
 }

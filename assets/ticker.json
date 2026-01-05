@@ -1,58 +1,38 @@
 [
   {
-    "symbol": "AAPL",
     "name": "Apple Inc.",
-    "price": 230.50,
-    "marketCap": "$2.9T USD",
-    "dividendYield": "0.50%",
+    "ticker": "AAPL",
+    "marketCap": "$2.98T",
+    "dividendYield": "0.65%",
     "peRatio": "28.5",
-    "averageVolume": "35.4M",
-    "founded": "1976",
-    "employees": "164,000",
     "ceo": "Tim Cook",
-    "website": "apple.com",
-    "about": "Tech-Konzern aus den USA mit starkem Wachstum im Services-Bereich."
+    "about": "Apple designs, manufactures, and markets smartphones, personal computers, tablets, and accessories."
   },
   {
-    "symbol": "TSLA",
     "name": "Tesla, Inc.",
-    "price": 250.20,
-    "marketCap": "$780B USD",
+    "ticker": "TSLA",
+    "marketCap": "$780B",
     "dividendYield": "N/A",
     "peRatio": "72.1",
-    "averageVolume": "100.2M",
-    "founded": "2003",
-    "employees": "140,000",
     "ceo": "Elon Musk",
-    "website": "tesla.com",
-    "about": "American electric vehicle and clean energy company led by Elon Musk."
+    "about": "Tesla designs and manufactures electric vehicles and battery energy storage from home to grid-scale."
   },
   {
-    "symbol": "NVDA",
-    "name": "NVIDIA Corp",
-    "price": 135.10,
-    "marketCap": "$3.1T USD",
-    "dividendYield": "0.02%",
-    "peRatio": "75.4",
-    "averageVolume": "280.5M",
-    "founded": "1993",
-    "employees": "29,600",
-    "ceo": "Jensen Huang",
-    "website": "nvidia.com",
-    "about": "Global leader in AI computing and graphics processing units (GPUs)."
-  },
-  {
-    "symbol": "MSFT",
-    "name": "Microsoft",
-    "price": 420.30,
-    "marketCap": "$3.2T USD",
-    "dividendYield": "0.72%",
+    "name": "Microsoft Corp.",
+    "ticker": "MSFT",
+    "marketCap": "$3.1T",
+    "dividendYield": "0.71%",
     "peRatio": "35.2",
-    "averageVolume": "22.1M",
-    "founded": "1975",
-    "employees": "221,000",
     "ceo": "Satya Nadella",
-    "website": "microsoft.com",
-    "about": "Leading technology company known for software, services, and cloud computing."
+    "about": "Microsoft is a global technology company that develops, licenses, and supports software, services, and devices."
+  },
+  {
+    "name": "NVIDIA",
+    "ticker": "NVDA",
+    "marketCap": "$1.2T",
+    "dividendYield": "0.04%",
+    "peRatio": "65.4",
+    "ceo": "Jensen Huang",
+    "about": "NVIDIA is the pioneer of GPU-accelerated computing, focusing on products for gaming, data centers, and AI."
   }
 ]

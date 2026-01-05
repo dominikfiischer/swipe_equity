@@ -1,10 +1,15 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
+
+// Import your models and other screens
+import '../../data/stock.dart';
 import '../../card/widgets/tinder_card.dart';
 import '../../invest/widgets/invest_screen.dart';
-import '../../profile/widgets/profile_screen.dart';
 import '../../search/widgets/search_screen.dart';
 import '../../watchlist/widgets/watchlist_screen.dart';
+import '../../profile/widgets/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,15 +19,23 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _selectedIndex = 0; // Track which tab is active
-  final List<Color> cardColors = [
-    Colors.deepOrange,
-    Colors.blue,
-    Colors.green,
-    Colors.purple,
-  ];
+  int _selectedIndex = 0;
+  late Future<List<Stock>> futureStocks;
 
-  // Logic to handle tab tapping
+  @override
+  void initState() {
+    super.initState();
+    // Start loading your ticker.json immediately
+    futureStocks = _loadStocks();
+  }
+
+  // Logic to read the local JSON file
+  Future<List<Stock>> _loadStocks() async {
+    final String response = await rootBundle.loadString('assets/ticker.json');
+    final List<dynamic> data = json.decode(response);
+    return data.map((json) => Stock.fromJson(json)).toList();
+  }
+
   void _onNavTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -31,9 +44,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Determine which content to show based on the selected index
     Widget currentBody;
 
+    // Switch between navigation tabs
     switch (_selectedIndex) {
       case 1:
         currentBody = const SearchScreen();
@@ -45,55 +58,65 @@ class _HomeScreenState extends State<HomeScreen> {
         currentBody = const ProfileScreen();
         break;
       default:
-      // 🚀 DISCOVER TAB WITH FLOATING INVEST BUTTON
-        currentBody = Stack(
-          children: [
-            // Layer 1: The Card Swiper
-            Center(
-              child: SizedBox(
-                height: 590,
-                child: CardSwiper(
-                  cardsCount: cardColors.length,
-                  numberOfCardsDisplayed: 3,
-                  backCardOffset: const Offset(0, 40),
-                  cardBuilder: (context, index, horizontalThreshold, verticalThreshold) {
-                    return TinderCard(color: cardColors[index]);
-                  },
-                ),
-              ),
-            ),
+      // Index 0: The Discover Tab with Swiper and Invest Button
+        currentBody = FutureBuilder<List<Stock>>(
+          future: futureStocks,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator(color: Colors.white));
+            }
+            if (snapshot.hasError || !snapshot.hasData) {
+              return const Center(child: Text("Error loading data", style: TextStyle(color: Colors.white)));
+            }
 
-            // Layer 2: The Floating Invest Button
-            Positioned(
-              top: 5,
-              right: 20,
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const InvestScreen()),
-                  );
-                },
-                icon: const Icon(Icons.trending_up, color: Colors.black, size: 20),
-                label: const Text(
-                  'Invest',
-                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+            final stocks = snapshot.data!;
+
+            return Stack(
+              children: [
+                // Layer 1: The full-size Card Swiper
+                Center(
+                  child: SizedBox(
+                    height: 750,
+                    child: CardSwiper(
+                      cardsCount: stocks.length,
+                      numberOfCardsDisplayed: 3,
+                      backCardOffset: const Offset(0, 40),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      cardBuilder: (context, index, h, v) {
+                        return TinderCard(stock: stocks[index]);
+                      },
+                    ),
                   ),
                 ),
-              ),
-            ),
-          ],
+
+                // Layer 2: The Floating Invest Button
+                Positioned(
+                  top: 10,
+                  right: 20,
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const InvestScreen()),
+                      );
+                    },
+                    icon: const Icon(Icons.trending_up, color: Colors.black, size: 20),
+                    label: const Text('Invest', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
         );
     }
 
     return Scaffold(
       backgroundColor: Colors.black,
-      // AppBar only shows on the Discover (index 0) screen
+      // Only show AppBar on the Discover tab
       appBar: _selectedIndex == 0
           ? AppBar(
         title: const Text('Discover', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
