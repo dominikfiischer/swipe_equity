@@ -2,37 +2,66 @@
   {
     "name": "Apple Inc.",
     "ticker": "AAPL",
+    "industry": "Technology",
     "marketCap": "$2.98T",
     "dividendYield": "0.65%",
     "peRatio": "28.5",
+    "high52": "$199.62",
+    "low52": "$124.17",
+    "profitMargin": "25.3%",
     "ceo": "Tim Cook",
-    "about": "Apple designs, manufactures, and markets smartphones, personal computers, tablets, and accessories."
+    "about": "Apple designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories. It also offers software and related services including Apple Pay and iCloud. The company's ecosystem and brand loyalty are considered among the strongest in the global consumer electronics industry."
   },
   {
     "name": "Tesla, Inc.",
     "ticker": "TSLA",
-    "marketCap": "$780B",
+    "industry": "Automotive",
+    "marketCap": "$780.5B",
     "dividendYield": "N/A",
     "peRatio": "72.1",
+    "high52": "$299.29",
+    "low52": "$152.37",
+    "profitMargin": "11.2%",
     "ceo": "Elon Musk",
-    "about": "Tesla designs and manufactures electric vehicles and battery energy storage from home to grid-scale."
+    "about": "Tesla is a vertically integrated sustainable energy company that also aims to transition the world to electric mobility by manufacturing electric vehicles. It also designs and manufactures solar panels and battery energy storage products for residential and commercial use."
+  },
+  {
+    "name": "NVIDIA Corp.",
+    "ticker": "NVDA",
+    "industry": "Semiconductors",
+    "marketCap": "$1.22T",
+    "dividendYield": "0.04%",
+    "peRatio": "65.4",
+    "high52": "$505.48",
+    "low52": "$140.34",
+    "profitMargin": "45.8%",
+    "ceo": "Jensen Huang",
+    "about": "NVIDIA is a computing platform company, innovating at the intersection of graphics, HPC, and AI. The company is best known for its Graphics Processing Units (GPUs) which are used in gaming, data centers, and automotive infotainment systems."
   },
   {
     "name": "Microsoft Corp.",
     "ticker": "MSFT",
-    "marketCap": "$3.1T",
+    "industry": "Software",
+    "marketCap": "$3.02T",
     "dividendYield": "0.71%",
     "peRatio": "35.2",
+    "high52": "$405.63",
+    "low52": "$219.35",
+    "profitMargin": "34.1%",
     "ceo": "Satya Nadella",
-    "about": "Microsoft is a global technology company that develops, licenses, and supports software, services, and devices."
+    "about": "Microsoft is a global leader in software, services, devices, and solutions. Its product segments include Productivity and Business Processes (Office, LinkedIn), Intelligent Cloud (Azure), and More Personal Computing (Windows, Xbox, Surface)."
   },
   {
-    "name": "NVIDIA",
-    "ticker": "NVDA",
-    "marketCap": "$1.2T",
-    "dividendYield": "0.04%",
-    "peRatio": "65.4",
-    "ceo": "Jensen Huang",
-    "about": "NVIDIA is the pioneer of GPU-accelerated computing, focusing on products for gaming, data centers, and AI."
+    "name": "Amazon.com, Inc.",
+    "ticker": "AMZN",
+    "industry": "E-commerce",
+    "marketCap": "$1.61T",
+    "dividendYield": "N/A",
+    "peRatio": "80.4",
+    "high52": "$155.63",
+    "low52": "$81.43",
+    "profitMargin": "5.3%",
+    "ceo": "Andy Jassy",
+    "about": "Amazon is a multinational technology company that focuses on e-commerce, cloud computing, digital streaming, and artificial intelligence. Its cloud platform, AWS, is a major contributor to its profitability and market leadership."
   }
 ]

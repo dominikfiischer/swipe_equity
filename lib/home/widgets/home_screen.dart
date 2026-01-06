@@ -22,14 +22,15 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   late Future<List<Stock>> futureStocks;
 
+  // 🚀 Watchlist storage
+  List<Stock> watchlist = [];
+
   @override
   void initState() {
     super.initState();
-    // Start loading your ticker.json immediately
     futureStocks = _loadStocks();
   }
 
-  // Logic to read the local JSON file
   Future<List<Stock>> _loadStocks() async {
     final String response = await rootBundle.loadString('assets/ticker.json');
     final List<dynamic> data = json.decode(response);
@@ -46,19 +47,18 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     Widget currentBody;
 
-    // Switch between navigation tabs
     switch (_selectedIndex) {
       case 1:
         currentBody = const SearchScreen();
         break;
       case 2:
-        currentBody = const WatchlistScreen();
+      // 🚀 Pass the current watchlist to the WatchlistScreen
+        currentBody = WatchlistScreen(items: watchlist);
         break;
       case 3:
         currentBody = const ProfileScreen();
         break;
       default:
-      // Index 0: The Discover Tab with Swiper and Invest Button
         currentBody = FutureBuilder<List<Stock>>(
           future: futureStocks,
           builder: (context, snapshot) {
@@ -70,18 +70,38 @@ class _HomeScreenState extends State<HomeScreen> {
             }
 
             final stocks = snapshot.data!;
+            int safeDisplayCount = stocks.length < 3 ? stocks.length : 3;
 
             return Stack(
               children: [
-                // Layer 1: The full-size Card Swiper
                 Center(
                   child: SizedBox(
-                    height: 750,
+                    height: 550,
                     child: CardSwiper(
                       cardsCount: stocks.length,
-                      numberOfCardsDisplayed: 3,
+                      numberOfCardsDisplayed: safeDisplayCount,
                       backCardOffset: const Offset(0, 40),
                       padding: const EdgeInsets.symmetric(horizontal: 20),
+
+                      // 🚀 Updated for version 7.2.0
+                      allowedSwipeDirection: const AllowedSwipeDirection.only(
+                        left: true,
+                        right: true,
+                      ),
+
+                      // 🚀 Swipe Logic for Watchlist
+                      onSwipe: (previousIndex, currentIndex, direction) {
+                        if (direction == CardSwiperDirection.right) {
+                          final swipedStock = stocks[previousIndex];
+                          setState(() {
+                            if (!watchlist.contains(swipedStock)) {
+                              watchlist.add(swipedStock);
+                            }
+                          });
+                        }
+                        return true; // Return true to confirm the swipe
+                      },
+
                       cardBuilder: (context, index, h, v) {
                         return TinderCard(stock: stocks[index]);
                       },
@@ -89,9 +109,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
 
-                // Layer 2: The Floating Invest Button
+                // Floating Invest Button
                 Positioned(
-                  top: 10,
+                  top: 0,
                   right: 20,
                   child: ElevatedButton.icon(
                     onPressed: () {
@@ -116,7 +136,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       backgroundColor: Colors.black,
-      // Only show AppBar on the Discover tab
       appBar: _selectedIndex == 0
           ? AppBar(
         title: const Text('Discover', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
